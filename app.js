@@ -4,6 +4,7 @@ const port          = 3000;
 const middleware    = require('./middleware')
 const path          = require('path')
 const bodyParser    = require('body-parser')
+const mongoose      = require('./database')
 
 const server = app.listen(port, () => console.log('Server rodando na porta ' + port))
 
