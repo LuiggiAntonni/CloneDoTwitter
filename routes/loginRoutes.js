@@ -4,6 +4,7 @@ const router        = express.Router();
 const bodyParser    = require('body-parser');
 const bcrypt        = require('bcrypt');
 const User = require('../schemas/UserSchema');
+const jwt           = require("jsonwebtoken");
 
 app.set('view engine', 'pug');
 app.set('views', 'views');
@@ -35,7 +36,12 @@ router.post('/', async (req, res, next) => {
             var result = await bcrypt.compare(req.body.logPassword, user.password)
             
             if(result === true) {
-                req.session.user = user;
+                let token = jwt.sign({
+                    user: user
+                }, process.env.JWT_KEY, {
+                    expiresIn: "1h"
+                });
+                req.session.user = token;
                 return res.redirect('/');
             }
         }
