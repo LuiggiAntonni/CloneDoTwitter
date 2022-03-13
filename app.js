@@ -37,7 +37,5 @@ app.get('/', middleware.requireLogin,(req, res, next) => {
         pageTitle: "Home",
         userLoggedIn: user.user
     }
-    console.log(user)
-
     res.status(200).render('home', payload)
 });
