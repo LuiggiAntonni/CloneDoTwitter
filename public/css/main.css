@@ -10,7 +10,7 @@
     --redBackground: rgba(223,34,94,0.1);
     --green: rgb(23,191,99);
     --greenBackground: rgba(22,191,99,0.1);
-
+    --hoverDarkBackground: rgba(101,119,134,0.05);
 }
 
 * {
@@ -155,6 +155,11 @@ button span {
     flex-shrink: 0;
 }
 
+.post:hover {
+    border-bottom: 3px solid rgb(230, 236, 240);
+    background-color: var(--hoverDarkBackground);
+}
+
 .mainContentContainer {
     flex: 1;
     display: flex;
@@ -238,4 +243,12 @@ button span {
 
 .replyFlag a {
     color: var(--blue);
+}
+
+.post.post.largeFont {
+    border-left: 10px solid rgb(230, 236, 240);
+}
+
+.post.largeFont .mainContentContainer{
+    padding-left: var(--spacing);
 }
