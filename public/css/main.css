@@ -19,6 +19,7 @@
 
 a {
     color: inherit;
+    text-decoration: none;
 }
 
 a:hover {
@@ -98,6 +99,16 @@ button span {
     padding: var(--spacing);
     border-bottom: 10px solid rgb(230, 236, 240);
     flex-shrink: 0;
+}
+
+.modal .postFormContainer {
+    border: none;
+    padding: 0;
+    padding-top: var(--spacing);
+}
+
+.modal .post {
+    padding-top: 0 0 var(--spacing) 0;
 }
 
 .userImageContainer {
@@ -218,4 +229,13 @@ button span {
     font-size: 13px;
     color: var(--greyText);
     margin-bottom: 5px;
+}
+
+.replyFlag {
+    margin-bottom: 5px;
+
+}
+
+.replyFlag a {
+    color: var(--blue);
 }
