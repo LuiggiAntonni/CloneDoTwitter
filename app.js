@@ -42,7 +42,8 @@ app.get('/', middleware.requireLogin,(req, res, next) => {
     var user = jwt.decode(req.session.user)
     var payload = {
         pageTitle: "Home",
-        userLoggedIn: user.user
+        userLoggedIn: user.user,
+        userLoggedInJs: JSON.stringify(user.user),
     }
     res.status(200).render('home', payload)
 });
