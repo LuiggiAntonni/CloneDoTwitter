@@ -38,8 +38,18 @@ mixin createDeletePostModal()
                     p Você não poderá excluir isso.
                 .modal-footer
                     button#closeModal.btn.btn-secondary(type='button', data-dismiss='modal') Cancelar
-                    button#.btn.btn-primary(type='button') Deletar
+                    button#deletePostButton.btn.btn-primary(type='button') Deletar
 
 mixin createPostModals(userLoggedIn)
     +createReplyModal(userLoggedIn)
     +createDeletePostModal()
+
+mixin createFollowButton(user, isFollowing)
+    - text = isFollowing ? "Seguindo" :"Seguir"
+    - buttonClass = isFollowing ? "followButton following" :"followButton"
+    button(class=buttonClass, data-user=user._id) #{text}
+
+mixin creatTab(name, href, isSelected)
+    - className = isSelected ? "tab activetab" : "tab"
+    a(href=href, class=className)
+        span #{name}
