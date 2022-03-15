@@ -3,6 +3,7 @@ const app           = express();
 const router        = express.Router();
 const bodyParser    = require('body-parser');
 const bcrypt        = require('bcrypt');
+const middleware    = require('../middleware')
 const User = require('../schemas/UserSchema');
 const jwt           = require("jsonwebtoken");
 
@@ -11,7 +12,7 @@ app.set('views', 'views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', middleware.requireLogin,(req, res, next) => {
     var user = jwt.decode(req.session.user)
     var payload = {
         pageTitle: "Visualizando postagem",

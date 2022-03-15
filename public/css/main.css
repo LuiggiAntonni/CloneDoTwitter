@@ -252,3 +252,11 @@ button span {
 .post.largeFont .mainContentContainer{
     padding-left: var(--spacing);
 }
+
+.postContentContainer .header {
+    display: flex;
+}
+
+.header .date {
+    flex: 1;
+}
