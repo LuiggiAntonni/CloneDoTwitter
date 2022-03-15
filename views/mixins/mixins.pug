@@ -13,7 +13,7 @@ mixin createReplyModal(userLoggedIn)
             .modal-content
                 .modal-header
                     h5#replyModalLabel.modal-title Responder
-                    button#xCloseReplyModal.close(type='button', data-dismiss='modal', aria-label='Close')
+                    button#xCloseModal.close(type='button', data-dismiss='modal', aria-label='Close')
                         span(aria-hidden='true') &times;
                 .modal-body
                     #originalPostContainer
@@ -23,6 +23,23 @@ mixin createReplyModal(userLoggedIn)
                         .textareaContainer 
                             textarea#replyTextarea(placeholder="Digite aqui sua resposta...")
                 .modal-footer
-                    button#closeReplyModal.btn.btn-secondary(type='button', data-dismiss='modal') Cancelar
+                    button#closeModal.btn.btn-secondary(type='button', data-dismiss='modal') Cancelar
                     button#submitReplyButton.btn.btn-primary(type='button', disabled="") Responder
 
+mixin createDeletePostModal()
+    #deletePostModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='deletePostModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#deletePostModalLabel.modal-title Deletar postagem?
+                    button#xCloseModal.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;
+                .modal-body
+                    p Você não poderá excluir isso.
+                .modal-footer
+                    button#closeModal.btn.btn-secondary(type='button', data-dismiss='modal') Cancelar
+                    button#.btn.btn-primary(type='button') Deletar
+
+mixin createPostModals(userLoggedIn)
+    +createReplyModal(userLoggedIn)
+    +createDeletePostModal()

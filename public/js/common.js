@@ -16,8 +16,9 @@ $("#postTextarea, #replyTextarea").keyup((event) => {
     submitButton.prop("disabled", false);
 })
 
-$("#closeReplyModal, #xCloseReplyModal").click(() => {
+$("#closeModal, #xCloseModal").click(() => {
     $('#replyModal').modal('hide')
+    $('#deletePostModal').modal('hide')
 })
 
 $("#submitPostButton, #submitReplyButton").click(() => {
@@ -66,6 +67,26 @@ $("#replyModal").on("hidden.bs.modal", () => {
     $("#originalPostContainer").html("");
 })
 
+$("#deletePostModal").on("show.bs.modal", () => {
+    var button = $(event.target);
+    var postId = getPostIdFromElement(button);
+    $("#deletePostButton").data("id", postId);
+})
+
+$("#deletePostButton").click((event) => {
+    var postId = $(event.target).data("id");
+    
+    $.ajax({
+        url: `/api/posts/${postId}`,
+        type: "DELETE",
+        success: (data, status, xhr) => {
+            if(xhr.status != 202) {
+                
+            }
+            location.reload();
+        }
+    })
+})
 
 $(document).on("click", ".likeButton", (event) => {
     var button = $(event.target);
@@ -173,10 +194,10 @@ function createPostHtml(postData, largeFont = false) {
     if(postData.replyTo && postData.replyTo._id) {
 
         if(!postData.replyTo._id) {
-            return 0;
+            return "Erro";
         }
         else if(!postData.replyTo.postedBy._id) {
-            return 0;
+            return "Erro";
         }
 
         var replyToUsername = postData.replyTo.postedBy.username;
@@ -184,6 +205,13 @@ function createPostHtml(postData, largeFont = false) {
                         Respondendo <a href="/profile/"${replyToUsername}>@${replyToUsername}</a>
                     </div>`
 
+    }
+
+    var buttons = "";
+    if (postData.postedBy._id == userLoggedIn._id) {
+        buttons = `<button data-id="${postData._id}" data-toggle="modal" data-target="#deletePostModal" onclick="$('#deletePostModal').modal('show')">
+                        <i class="fas fa-times"></i>
+                    </button>`;
     }
 
     return `<div class="post ${largeFontClass}" data-id="${postData._id}">
@@ -199,6 +227,7 @@ function createPostHtml(postData, largeFont = false) {
                             <a href="/profile/${postedBy.username}" class="displayName">${displayName}</a>
                             <span class="username">@${postedBy.username}</span>
                             <span class="date">${timeStamp}</span>
+                            ${buttons}
                         </div>
                         ${replyFlag}
                         <div class="postBody">
