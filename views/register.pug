@@ -5,8 +5,9 @@ block content
         h1 Cadastro
         form#registerForm(method="post", onsubmit="event.preventDefault(); validateForm()")
             p.errorMessage #{errorMessage}
-            input(type="text", name="firstName", placeholder="Nome", value=firstName, maxlength="20",required)
-            input(type="text", name="lastName", placeholder="Sobrenome", value=lastName, maxlength="20", required)
+            .row
+                input.col(type="text", name="firstName", placeholder="Nome", value=firstName, maxlength="20",required)
+                input.col(type="text", name="lastName", placeholder="Sobrenome", value=lastName, maxlength="20", required)
             input(type="text", name="username", placeholder="Usuário", value=username, maxlength="15", required)
             input(type="email", name="email", placeholder="Email", value=email, maxlength="50", required)
             input#password(type="password", name="password", placeholder="Senha", maxlength="20", required)

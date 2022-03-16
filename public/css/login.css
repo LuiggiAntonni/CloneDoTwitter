@@ -1,5 +1,14 @@
+html {
+    height: 100%;
+}
+
 body {
-    background-color: #0099ff;
+    background-image: linear-gradient(to bottom right, #0099ff, #036bb1);
+    background-repeat: no-repeat;
+}
+
+h1 {
+    text-transform: uppercase;
 }
 
 .wrapper {
@@ -9,11 +18,14 @@ body {
 }
 
 .loginContainer {
+    margin-top: 5em;
+    justify-content: center;
     padding: 20px;
     width: 80%;
     max-width: 500px;
-    border: 1px solid #dedede;
-    background-color: #fff;
+    border: none;
+    border-radius: 10px;
+    background-color: #f0f0f0;
     text-align: center;
     box-shadow: 0 1px 4px rgba(0,0,0,0.3);
     -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3);
@@ -25,20 +37,60 @@ form {
     flex-direction: column;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+.input-field {
+    margin-bottom: 10px;
+    width: 100%;
+    height: 55px;
+    background-color: #e2e2e2;
+    margin: 10px 0;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 .4rem;
+    outline: none;
+}
+
+.input-field i {
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    font-size: 1.1rem;
+}
+
+.input-field input {
+    background: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+input[type="text"]:not(.login),
+input[type="email"]:not(.login),
+input[type="password"]:not(.login) {
     margin-bottom: 20px;
     padding: 5px 10px;
     border-radius: 2px;
     border: 1px solid #dedede;
-    background-color: #f2f2f2;
 }
 
 input[type="submit"] {
-    background-color: #0099ff;
+    background-color: #5995fd;
     color: #fff;
     border: none;
-    border-radius: 2px;
-    margin-bottom: 10px;
+    border-radius: 49px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 10px;
+    height: 39px;
+    transition: .5s;
+}
+
+input[type="submit"]:hover {
+    background-color: #4d84e2;
+}
+
+#registerForm {
+    padding: 0 20px;
 }
