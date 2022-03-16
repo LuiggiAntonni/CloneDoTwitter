@@ -140,11 +140,22 @@ button span {
 }
 
 #submitPostButton {
-    background-color: var(--blue);
     color: #fff;
     border: none;
     border-radius: 10px;
     padding: 7px 15px;
+}
+#submitPostButton:not(:disabled) {
+    background-color: var(--blueLight);
+    border: 1px solid var(--blue);
+    transition: transform 150ms cubic-bezier(0,0,0.58,1), box-shadow 150ms cubic-bezier(0,0,0.58,1);
+    box-shadow: 0 3px var(--blue), 0 1px var(--blueLight);
+}
+
+#submitPostButton:not(:disabled):hover {
+    background-color: var(--blue);
+    box-shadow: none;
+    transform: translate(0, 2px);
 }
 
 #submitPostButton:disabled {
